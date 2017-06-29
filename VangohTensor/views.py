@@ -48,6 +48,6 @@ def getImages():
 	datas = resp['data']
 	for post in datas:
 		data = post['images']['standard_resolution']['url']
-		print data
+	
 	return render_template('index.html', datas=datas)
 
