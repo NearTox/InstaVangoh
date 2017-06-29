@@ -1,13 +1,13 @@
 certifi==2017.4.17
 chardet==3.0.4
 click==6.7
-gunicorn==19.7.1
 Flask==0.12.2
+gunicorn==19.7.1
 idna==2.5
 itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
 requests==2.18.1
 urllib3==1.21.1
--e git+https://github.com/ManoloBrn/InstaVangoh.git@948e9e66d220e362ae78585ace6daeaf1d4c8191#egg=VangohTensor
+-e git+https://github.com/ManoloBrn/InstaVangoh.git@700bf8cef7a76a4e8c534409651c8914a778749b#egg=VangohTensor
 Werkzeug==0.12.2
