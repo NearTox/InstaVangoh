@@ -3,28 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title>Instagram API</title>
-    <link rel="stylesheet" href="/bootstrap.css">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/style.css">
   </head>
   <body>
 
     <div class="formulario">
-    <img id="logo" src="logo.png">
+    <img id="logo" src="/static/logo.png">
       <form class="form-horizontal">
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button id="boton" type="submit" class="btn btn-default">Entrar</button>
+           
+            <a class="btn btn-default" href="https://api.instagram.com/oauth/authorize/?client_id=839fc593c5954f30819699e1a4f1a2fe&redirect_uri=http://127.0.0.1:5000/&response_type=code" role="button">Entrar</a>
           </div>
         </div>
       </form>
     </div>
 
 
-    <script type="text/javascript" src="boostrap.js" />
-    <script type="text/javascript" src="style.js" />
+    <script type="text/javascript" src="/static/bootstrap.js" />
+    <script type="text/javascript" src="/static/style.js" />
 
     <script type="text/javascript">
     
+
 
     </script>
 
