@@ -1,6 +1,6 @@
 from flask import Flask,request,redirect,url_for,render_template
 import requests
-app = Flask(__name__)
+from VangohTensor import app
 
 class Auth:
 	url = 'https://api.instagram.com/oauth/access_token'
@@ -31,7 +31,7 @@ class User:
 @app.route('/login')
 def login():
 	return render_template('login.html')
-	
+
 @app.route('/')
 def getToken():
     code = request.args.get('code')
