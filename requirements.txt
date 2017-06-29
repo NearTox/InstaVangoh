@@ -9,5 +9,5 @@ Jinja2==2.9.6
 MarkupSafe==1.0
 requests==2.18.1
 urllib3==1.21.1
--e git+https://github.com/ManoloBrn/InstaVangoh.git@700bf8cef7a76a4e8c534409651c8914a778749b#egg=VangohTensor
+
 Werkzeug==0.12.2
