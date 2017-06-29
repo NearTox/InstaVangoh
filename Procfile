@@ -1,1 +1,0 @@
-web: gunicorn VangohTensor:app
