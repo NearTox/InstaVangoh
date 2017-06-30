@@ -4,10 +4,13 @@
 	<title></title>
 </head>
 <body>
-<h1>hola</h1>
+  {% if username %}
+  <h1>hola {{ username }}</h1>
+  <a href="/logout">Cerrar Sesion</a>
+  {% endif %}
 
-  {% for post in datas %}
-    <img class=images src={{ post['images']['standard_resolution']['url'] }} />
+  {% for post in json_data %}
+  <img class=images src={{ post['images']['standard_resolution']['url'] }} />
   {% endfor %}
 
 </body>
