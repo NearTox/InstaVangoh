@@ -37,7 +37,7 @@ def getToken():
     code = request.args.get('code')
     token = Auth(code)
     r = redirect("/home")
-    r.set_cookie('Token',token.req())
+    r.set_cookie('Token',token.req(),max_age=1440)
     return r
     
 @app.route('/home')
