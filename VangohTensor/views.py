@@ -38,5 +38,5 @@ def getImages():
     user_full_name = user.getUsername()
     json_data = resp['data']
 
-    return render_template('index.html', json_data=json_data, username=user_full_name)
+    return render_template('home.html', json_data=json_data, username=user_full_name)
 

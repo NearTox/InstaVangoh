@@ -8,7 +8,7 @@ class Auth:
             'client_id': '839fc593c5954f30819699e1a4f1a2fe',
             'client_secret': '81835373dbf84be496178159f199cf81',
             'grant_type': 'authorization_code',
-            'redirect_uri': 'http://127.0.0.1:5000/',
+            'redirect_uri': 'http://127.0.0.1:8000/oauth/',
             'code': self.code
         }
 
