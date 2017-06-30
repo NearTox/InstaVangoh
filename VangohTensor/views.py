@@ -1,53 +1,42 @@
-from flask import Flask,request,redirect,url_for,render_template
+from flask import Flask, request, redirect, url_for, render_template
 import requests
 from VangohTensor import app
-
-class Auth:
-	url = 'https://api.instagram.com/oauth/access_token'
-	def __init__(self,code):
-		self.code = code
-		self.data = {'client_id':'839fc593c5954f30819699e1a4f1a2fe',
-		'client_secret':'81835373dbf84be496178159f199cf81',
-		'grant_type':'authorization_code',
-		'redirect_uri':'https://salty-coast-76679.herokuapp.com/',
-		'code':self.code}
-	def req(self):
-		r = requests.post(self.url,self.data)
-		json = r.json()
-		return json['access_token']
-
-class User:
-	urltop = 'https://api.instagram.com/v1/users/self/media/recent/'
-	count = 5
-
-	def __init__(self,token):
-		self.data = {'access_token':token,
-					'count':self.count}
-
-	def getTop(self):
-		r = requests.get(self.urltop,self.data)
-		return r.json()
+from user import User
+from auth import Auth
 
 @app.route('/login')
 def login():
-	return render_template('login.html')
+    cookie = request.cookies.get('Token')
+    if cookie is not None:
+        return redirect("/home")
+    return render_template('login.html')
 
-@app.route('/')
+@app.route('/logout')
+def logout():
+    response = redirect("/login")
+    response.delete_cookie('Token')
+    return response
+
+@app.route('/oauth')
 def getToken():
     code = request.args.get('code')
     token = Auth(code)
-    r = redirect("/home")
-    r.set_cookie('Token',token.req(),max_age=1440)
-    return r
-    
+    response = redirect("/home")
+    response.set_cookie('Token', token.req())
+    return response
+
 @app.route('/home')
 def getImages():
-	cookie = request.cookies.get('Token')
-	user = User(cookie)
-	resp = user.getTop()
-	datas = resp['data']
-	for post in datas:
-		data = post['images']['standard_resolution']['url']
-	
-	return render_template('index.html', datas=datas)
+    cookie = request.cookies.get('Token')
+    # check for non-login users
+    if cookie is None:
+        return redirect("/login")
+
+    user = User(cookie)
+
+    resp = user.getTop()
+    user_full_name = user.getUsername()
+    json_data = resp['data']
+
+    return render_template('index.html', json_data=json_data, username=user_full_name)
 
