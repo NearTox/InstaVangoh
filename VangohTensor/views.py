@@ -20,6 +20,17 @@ def logout():
 @app.route('/oauth')
 def getToken():
     code = request.args.get('code')
+    error = request.args.get('error')
+    if error is None:
+        error_code = request.args.get('error_code')
+        error_description = request.args.get('error_description')
+        return redirect(url_for(
+            login,
+            error=error,
+            error_code=error_code,
+            error_description=error_description
+        ))
+
     token = Auth(code)
     response = redirect("/home")
     response.set_cookie('Token', token.req())
